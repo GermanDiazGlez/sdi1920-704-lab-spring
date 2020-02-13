@@ -47,15 +47,32 @@
 
 
 	<div class="container">
-		<h2>Detalles de la nota</h2>
-		<div class="panel panel-default">
-			<div class="panel-heading">Descripción</div>
-			<div class="panel-body" th:text="${mark.description}">
-				Ejercicio 1</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Puntuación</div>
-			<div class="panel-body" th:text="${mark.score}">100</div>
+		<h2>Profesores</h2>
+		<p>Los profesores que actualmente figuran en el sistema son las
+			siguientes:</p>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Dni</th>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th>Categoria</th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="teacher : ${teachersList}">
+						<td th:text="${teacher.dNI}">1</td>
+						<td th:text="${teacher.nombre}">Nombre</td>
+						<td th:text="${teacher.apellidos}">apellidos</td>
+						<td th:text="${teacher.categoria}">categoria</td>
+						<td><a th:href="${'/teacher/delete/' + teacher.dNI}">eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 

@@ -1,26 +1,33 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
 
-@RestController
+@Controller
 public class TeacherController {
 	
 	@Autowired //Inyectar el servicio
 	private TeachersService teachersService;
 
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST)
-	public String addTeacher(@RequestParam String dNI, @RequestParam String nombre, @RequestParam String apellidos, @RequestParam String categoria) {
-		Teacher teacher = new Teacher(Long.valueOf(dNI), nombre, apellidos, categoria);
+	public String addTeacher(@ModelAttribute Teacher teacher) {
 		teachersService.addTeacher(teacher);
-		return "Añadiendo profesor : " + teacher.toString();
+		return "redirect:/teacher/list";
+	}
+	
+	@RequestMapping("/teacher/add")
+	public String setTeacher() {
+		return "/teacher/add";
 	}
 
 	@RequestMapping("/teacher/details/{id}")
@@ -32,7 +39,7 @@ public class TeacherController {
 	@RequestMapping("/teacher/delete/{id}")
 	public String deleteTeacher(@PathVariable Long id) {
 		teachersService.deleteTeacher(id);
-		return "Eliminando profesor con DNI: " + id;
+		return "redirect:/teacher/list";
 	}
 
 	@RequestMapping("/teacher/edit/{id}")
@@ -41,7 +48,8 @@ public class TeacherController {
 	}
 	
 	@RequestMapping("/teacher/list")
-	public String getList() {
-		return teachersService.getTeachers().toString();
+	public String getList(Model model) {
+		model.addAttribute("teachersList", teachersService.getTeachers());
+		return "teacher/list";
 	}
 }
