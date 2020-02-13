@@ -19,16 +19,19 @@ public class TeacherController {
 	@Autowired //Inyectar el servicio
 	private TeachersService teachersService;
 
+	
+	@RequestMapping("/teacher/add")
+	public String addTeacher() {
+		return "/teacher/add";
+	}
+	
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST)
 	public String addTeacher(@ModelAttribute Teacher teacher) {
 		teachersService.addTeacher(teacher);
 		return "redirect:/teacher/list";
 	}
 	
-	@RequestMapping("/teacher/add")
-	public String setTeacher() {
-		return "/teacher/add";
-	}
+	
 
 	@RequestMapping("/teacher/details/{id}")
 	public String getDetail(@PathVariable Long id) {
