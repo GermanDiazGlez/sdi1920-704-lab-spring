@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Teacher {
 
 	@Id
-	@GeneratedValue
 	private Long dNI;
 	private String nombre;
 	private String apellidos;
@@ -14,10 +13,10 @@ public class Teacher {
 	
 	public Teacher(Long dNI, String nombre, String apellidos, String categoria) {
 		super();
-		setDNI(dNI);
-		setNombre(nombre);
-		setApellidos(apellidos);
-		setCategoria(categoria);
+		this.dNI=dNI;
+		this.nombre=nombre;
+		this.apellidos=apellidos;
+		this.categoria=categoria;
 	}
 
 	public Teacher() {
@@ -28,7 +27,7 @@ public class Teacher {
 		return dNI;
 	}
 
-	private void setDNI(long dNI) {
+	public void setDNI(long dNI) {
 		this.dNI = dNI;
 	}
 
@@ -36,7 +35,7 @@ public class Teacher {
 		return nombre;
 	}
 
-	private void setNombre(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
@@ -44,7 +43,7 @@ public class Teacher {
 		return apellidos;
 	}
 
-	private void setApellidos(String apellidos) {
+	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
@@ -52,7 +51,7 @@ public class Teacher {
 		return categoria;
 	}
 
-	private void setCategoria(String categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 	

@@ -29,10 +29,9 @@
 					<li class="active"><a href="/mark/list">Ver Notas</a></li>
 					<li><a href="/mark/add">Agregar Nota</a></li>
 					<li><a href="/mark/filter">Filtrar</a></li>
-					<li><a href="/testProfesor.html">Añadir Profesor</a></li>
+					<li><a href="/teacher/add">Añadir Profesor</a></li>
 					<li class="active"><a href="/teacher/list">Listar
 							Profesores</a></li>
-					<li><a href="/teacher/delete">Añadir Profesor</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/registrarse"><span
@@ -66,7 +65,7 @@
 					<tr th:each="mark : ${markList}">
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
+						<td th:text="${mark.score}">20</td>
 						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
 						<td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
 						<td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>

@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.uniovi.entities.Mark;
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
 
@@ -27,6 +25,7 @@ public class TeacherController {
 	
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST)
 	public String addTeacher(@ModelAttribute Teacher teacher) {
+		System.out.println(teacher);
 		teachersService.addTeacher(teacher);
 		return "redirect:/teacher/list";
 	}

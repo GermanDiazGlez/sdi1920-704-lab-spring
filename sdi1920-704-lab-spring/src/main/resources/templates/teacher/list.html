@@ -29,10 +29,9 @@
 					<li class="active"><a href="/mark/list">Ver Notas</a></li>
 					<li><a href="/mark/add">Agregar Nota</a></li>
 					<li><a href="/mark/filter">Filtrar</a></li>
-					<li><a href="/testProfesor.html">Añadir Profesor</a></li>
+					<li><a href="/teacher/add">Añadir Profesor</a></li>
 					<li class="active"><a href="/teacher/list">Listar
 							Profesores</a></li>
-					<li><a href="/teacher/delete">Añadir Profesor</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/registrarse"><span
@@ -45,7 +44,6 @@
 	</nav>
 
 
-
 	<div class="container">
 		<h2>Profesores</h2>
 		<p>Los profesores que actualmente figuran en el sistema son las
@@ -54,10 +52,11 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Dni</th>
+						<th class="col-md-1">DNI</th>
 						<th>Nombre</th>
 						<th>Apellidos</th>
 						<th>Categoria</th>
+						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -65,16 +64,17 @@
 				</thead>
 				<tbody>
 					<tr th:each="teacher : ${teachersList}">
-						<td th:text="${teacher.dNI}">1</td>
-						<td th:text="${teacher.nombre}">Nombre</td>
-						<td th:text="${teacher.apellidos}">apellidos</td>
-						<td th:text="${teacher.categoria}">categoria</td>
+						<td th:text="${teacher.dNI}"></td>
+						<td th:text="${teacher.nombre}"></td>
+						<td th:text="${teacher.apellidos}"></td>
+						<td th:text="${teacher.categoria}"></td>
 						<td><a th:href="${'/teacher/delete/' + teacher.dNI}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+
 
 
 </body>
