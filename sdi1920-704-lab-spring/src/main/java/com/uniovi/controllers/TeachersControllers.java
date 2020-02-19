@@ -12,46 +12,42 @@ import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
 
 @Controller
-public class TeacherController {
-	
-	@Autowired //Inyectar el servicio
+public class TeachersControllers {
+
+	@Autowired
 	private TeachersService teachersService;
 
-	
 	@RequestMapping("/teacher/add")
-	public String addTeacher() {
+	public String setTeacher() {
 		return "/teacher/add";
 	}
-	
-	@RequestMapping(value="/teacher/add", method=RequestMethod.POST)
-	public String addTeacher(@ModelAttribute Teacher teacher) {
-		System.out.println(teacher);
+
+	@RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
+	public String setTeacher(@ModelAttribute Teacher teacher) {
 		teachersService.addTeacher(teacher);
 		return "redirect:/teacher/list";
 	}
-	
-	
 
-	@RequestMapping("/teacher/details/{id}")
-	public String getDetail(@PathVariable Long id) {
-		return teachersService.getTeacher(id).toString();
-
-	}
-
-	@RequestMapping("/teacher/delete/{id}")
-	public String deleteTeacher(@PathVariable Long id) {
-		teachersService.deleteTeacher(id);
+	@RequestMapping("/teacher/delete/{dni}")
+	public String deleteTeacher(@PathVariable Long dni) {
+		teachersService.deleteTeacher(dni);
 		return "redirect:/teacher/list";
 	}
 
-	@RequestMapping("/teacher/edit/{id}")
-	public String getEdit(@PathVariable Long id) {
-		return "Editar profesor " + id;
-	}
-	
 	@RequestMapping("/teacher/list")
-	public String getList(Model model) {
-		model.addAttribute("teachersList", teachersService.getTeachers());
+	public String listTeachers(Model model) {
+		model.addAttribute("teachers", teachersService.getTeachers());
 		return "teacher/list";
 	}
+
+	@RequestMapping("/teacher/edit")
+	public String editTeacher() {
+		return "Editando datos del profesor";
+	}
+
+	@RequestMapping("/teacher/details/{dni}")
+	public String getDetailTeacher(@PathVariable Long dni) {
+		return teachersService.getTeacher(dni).toString();
+	}
+
 }

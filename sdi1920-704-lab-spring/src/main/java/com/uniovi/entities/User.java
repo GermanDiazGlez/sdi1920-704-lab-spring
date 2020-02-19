@@ -6,19 +6,20 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-
 	@Id
 	@GeneratedValue
 	private long id;
 
 	@Column(unique = true)
 	private String dni;
+
 	private String name;
 	private String lastName;
+	private String role;
 	private String password;
+
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
-	private String role;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Mark> marks;

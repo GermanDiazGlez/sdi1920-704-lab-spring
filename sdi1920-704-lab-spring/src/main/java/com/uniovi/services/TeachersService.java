@@ -13,27 +13,24 @@ import com.uniovi.repositories.TeachersRepository;
 public class TeachersService {
 
 	@Autowired
-	private TeachersRepository teachersRepository; 
-	
-	public void addTeacher(Teacher teacher) {
-		// Si en Id es null le asignamos el ultimo + 1 de la lista
-		teachersRepository.save(teacher);
-	}
-	
-	public List<Teacher> getTeachers(){
+	private TeachersRepository teachersRepository;
+
+	public List<Teacher> getTeachers() {
 		List<Teacher> teachers = new ArrayList<Teacher>();
 		teachersRepository.findAll().forEach(teachers::add);
 		return teachers;
 	}
-	
-	public Teacher getTeacher(Long id){
+
+	public Teacher getTeacher(Long id) {
 		return teachersRepository.findById(id).get();
 	}
-	
-	public void deleteTeacher(Long id){
+
+	public void addTeacher(Teacher teacher) {
+		teachersRepository.save(teacher);
+	}
+
+	public void deleteTeacher(long id) {
 		teachersRepository.deleteById(id);
 	}
-	
-	
-	
+
 }

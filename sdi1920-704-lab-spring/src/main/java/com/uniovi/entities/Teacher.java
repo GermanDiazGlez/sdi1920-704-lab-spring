@@ -1,34 +1,35 @@
 package com.uniovi.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Teacher {
 
 	@Id
-	private Long dNI;
+	private Long dni;
 	private String nombre;
 	private String apellidos;
 	private String categoria;
-	
-	public Teacher(Long dNI, String nombre, String apellidos, String categoria) {
-		super();
-		this.dNI=dNI;
-		this.nombre=nombre;
-		this.apellidos=apellidos;
-		this.categoria=categoria;
-	}
 
 	public Teacher() {
 		super();
 	}
 
-	public Long getDNI() {
-		return dNI;
+	public Teacher(Long dni, String nombre, String apellidos, String categoria) {
+		super();
+		setDni(dni);
+		setNombre(nombre);
+		setApellidos(apellidos);
+		setCategoria(categoria);
 	}
 
-	public void setDNI(long dNI) {
-		this.dNI = dNI;
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -54,11 +55,11 @@ public class Teacher {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Teacher [DNI=" + dNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", categoria=" + categoria
+		return "Teacher [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", categoria=" + categoria
 				+ "]";
 	}
-	
+
 }
