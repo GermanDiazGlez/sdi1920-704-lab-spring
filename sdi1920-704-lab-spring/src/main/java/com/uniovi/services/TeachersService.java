@@ -21,7 +21,7 @@ public class TeachersService {
 		return teachers;
 	}
 
-	public Teacher getTeacher(Long id) {
+	public Teacher getTeacher(String id) {
 		return teachersRepository.findById(id).get();
 	}
 
@@ -29,8 +29,12 @@ public class TeachersService {
 		teachersRepository.save(teacher);
 	}
 
-	public void deleteTeacher(long id) {
+	public void deleteTeacher(String id) {
 		teachersRepository.deleteById(id);
+	}
+
+	public Teacher getTeacherByDni(String dni) {
+		return teachersRepository.findByDni(String.valueOf(dni));
 	}
 
 }

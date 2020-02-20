@@ -1,13 +1,16 @@
 package com.uniovi.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Teacher {
-
+	
 	@Id
-	private Long dni;
+	@Column(unique = true)
+	private String dni;
 	private String nombre;
 	private String apellidos;
 	private String categoria;
@@ -16,7 +19,7 @@ public class Teacher {
 		super();
 	}
 
-	public Teacher(Long dni, String nombre, String apellidos, String categoria) {
+	public Teacher(String dni, String nombre, String apellidos, String categoria) {
 		super();
 		setDni(dni);
 		setNombre(nombre);
@@ -24,11 +27,11 @@ public class Teacher {
 		setCategoria(categoria);
 	}
 
-	public Long getDni() {
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(Long dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 

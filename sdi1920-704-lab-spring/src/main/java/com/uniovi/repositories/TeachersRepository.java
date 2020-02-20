@@ -4,6 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.uniovi.entities.Teacher;
 
-public interface TeachersRepository  extends CrudRepository<Teacher, Long>{
+public interface TeachersRepository extends CrudRepository<Teacher, String> {
+
+	Teacher findByDni(String dni);
 
 }
