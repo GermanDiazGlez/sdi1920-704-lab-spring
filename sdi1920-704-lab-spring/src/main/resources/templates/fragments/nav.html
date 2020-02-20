@@ -11,20 +11,24 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
+				<li><a href="/"><span th:text="#{nav.home}"></span></a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Gestión de notas <span
+					data-toggle="dropdown" href="#"><span
+						th:text="#{nav.gestionNotas}"></span><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add"><span th:text="#{nav.addMark}"></span></a></li>
+						<li><a href="/mark/list"><span th:text="#{nav.listMark}"></span></a></li>
 					</ul></li>
 				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Gestión de Usuarios <span
+					data-toggle="dropdown" href="#"><span
+						th:text="#{nav.gestionUsuarios}"></span><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar Usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add"><span
+						th:text="#{nav.addUser}"></span></a></li>
+						<li><a href="/user/list"><span
+						th:text="#{nav.listUser}"></span></a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -43,6 +47,11 @@
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
+						</a></li>
+						<li><a id="btnFrench" value="FR"> <img
+								th:src="@{/img/if_fr_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.fr}">Francés</span>
 						</a></li>
 					</ul></li>
 				<li><a href="/signup" th:text="#{signup.message}"> <span
