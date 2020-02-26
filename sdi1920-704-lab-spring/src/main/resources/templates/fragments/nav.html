@@ -10,39 +10,37 @@
 			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/"><span th:text="#{nav.home}"></span></a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
-						th:text="#{nav.gestionNotas}"></span><span
-						class="caret"></span></a>
+						th:text="#{nav.gestionNotas}"></span><span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add"><span th:text="#{nav.addMark}"></span></a></li>
-						<li><a href="/mark/list"><span th:text="#{nav.listMark}"></span></a></li>
+						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
+							href="/mark/add"><span th:text="#{nav.addMark}"></span></a></li>
+						<li><a href="/mark/list"><span th:text="#{nav.listMark}"></span></a>
+						</li>
 					</ul></li>
-					
+
+				<li id="users-menu" class="dropdown"
+					sec:authorize="hasRole('ROLE_ADMIN')"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+						th:text="#{nav.gestionUsuarios}"></span><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/user/add"><span th:text="#{nav.addUser}"></span></a></li>
+						<li><a href="/user/list"><span th:text="#{nav.listUser}"></span></a></li>
+					</ul></li>
+
 				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
-						th:text="#{nav.gestionUsuarios}"></span><span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/user/add"><span
-						th:text="#{nav.addUser}"></span></a></li>
-						<li><a href="/user/list"><span
-						th:text="#{nav.listUser}"></span></a></li>
-					</ul></li>
-					
-				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"><span
-						th:text="#{nav.gestionProfesores}"></span><span
-						class="caret"></span></a>
+						th:text="#{nav.gestionProfesores}"></span><span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/teacher/add"><span
-						th:text="#{nav.addTeacher}"></span></a></li>
+								th:text="#{nav.addTeacher}"></span></a></li>
 						<li><a href="/teacher/list"><span
-						th:text="#{nav.listTeacher}"></span></a></li>
+								th:text="#{nav.listTeacher}"></span></a></li>
 					</ul></li>
-					
+
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href=" #"
@@ -67,11 +65,16 @@
 								th:text="#{language.fr}">Francés</span>
 						</a></li>
 					</ul></li>
-				<li><a href="/signup" th:text="#{signup.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/signup"
+					th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span> Registrate
 				</a></li>
-				<li><a href="/login" th:text="#{login.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/login"
+					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> Identifícate
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 			</ul>
 		</div>
