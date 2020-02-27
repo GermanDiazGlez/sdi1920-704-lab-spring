@@ -35,7 +35,7 @@
 					data-toggle="dropdown" href="#"><span
 						th:text="#{nav.gestionProfesores}"></span><span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/teacher/add"><span
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/teacher/add"><span
 								th:text="#{nav.addTeacher}"></span></a></li>
 						<li><a href="/teacher/list"><span
 								th:text="#{nav.listTeacher}"></span></a></li>
