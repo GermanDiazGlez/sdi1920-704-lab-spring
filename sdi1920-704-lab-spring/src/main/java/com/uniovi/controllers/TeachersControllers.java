@@ -18,28 +18,9 @@ public class TeachersControllers {
 
 	@Autowired
 	private TeachersService teachersService;
-	
+
 	@Autowired
 	private AddTeacherValidator addTeacherValidator;
-
-	@RequestMapping("/teacher/add")
-	public String setTeacher(Model model) {
-		model.addAttribute("teacher", new Teacher());
-		return "/teacher/add";
-	}
-
-	@RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
-	public String setTeacher(@ModelAttribute Teacher teacher, BindingResult result) {
-		addTeacherValidator.validate(teacher, result);
-
-		if (result.hasErrors()) {
-			return "/teacher/add";
-		}
-
-		teachersService.addTeacher(teacher);
-
-		return "redirect:/teacher/list";
-	}
 
 	@RequestMapping("/teacher/delete/{dni}")
 	public String deleteTeacher(@PathVariable String dni) {
@@ -63,4 +44,22 @@ public class TeachersControllers {
 		return teachersService.getTeacher(dni).toString();
 	}
 
+	@RequestMapping("/teacher/add")
+	public String setTeacher(Model model) {
+		model.addAttribute("teacher", new Teacher());
+		return "/teacher/add";
+	}
+
+	@RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
+	public String setTeacher(@ModelAttribute Teacher teacher, BindingResult result) {
+		addTeacherValidator.validate(teacher, result);
+
+		if (result.hasErrors()) {
+			return "/teacher/add";
+		}
+
+		teachersService.addTeacher(teacher);
+
+		return "redirect:/teacher/list";
+	}
 }

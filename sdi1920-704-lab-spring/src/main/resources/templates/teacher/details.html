@@ -2,30 +2,29 @@
 <html lang="en">
 
 <head th:replace="fragments/head" />
-
 <body>
 
 	<nav th:replace="fragments/nav" />
 
 	<div class="container">
 		<h2>Detalles del profesor</h2>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">DNI</div>
 			<div class="panel-body" th:text="${teacher.dni}">28276</div>
 		</div>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">Nombre</div>
-			<div class="panel-body" th:text="${teacher.nombre}">Javier</div>
+			<div class="panel-body" th:text="${teacher.nombre}">
+				Ejercicio 1</div>
 		</div>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">Apellidos</div>
-			<div class="panel-body" th:text="${teacher.apellidos}">Perez Garcia</div>
+			<div class="panel-body" th:text="${teacher.apellidos}">100</div>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Categoria</div>
-			<div class="panel-body" th:text="${teacher.categoria}">A</div>
-		</div>
-	</div>
 
+	</div>
 </body>
 </html>

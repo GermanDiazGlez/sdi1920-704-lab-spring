@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="fragments/head"/>
-
+<head th:replace="fragments/head" />
 <body>
-
-	<nav th:replace="fragments/nav"/>
-
+	<nav th:replace="fragments/nav" />
 	<div class="container">
 		<h2>Profesores</h2>
-		<p>Los profesores que actualmente figuran en el sistema son las
+		<p>Los profesores que actualmente figuran en el sistema son los
 			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="col-md-1">DNI</th>
+						<th>DNI</th>
 						<th>Nombre</th>
 						<th>Apellidos</th>
 						<th>Categoria</th>
 						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="teacher : ${teachersList}">
-						<td th:text="${teacher.dNI}"></td>
-						<td th:text="${teacher.nombre}"></td>
+					<tr th:each="teacher : ${teachers}">
+						<td th:text="${teacher.dni}">¡</td>
+						<td th:text="${teacher.nombre}">¡</td>
 						<td th:text="${teacher.apellidos}"></td>
 						<td th:text="${teacher.categoria}"></td>
-						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/teacher/delete/' + teacher.dNI}">eliminar</a></td>
-						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/teacher/edit/' + teacher.dNI}">editar</a></td>
-						<td><a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESSOR')" th:href="${'/teacher/details/' + teacher.dNI}">detalles</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')"
+							th:href="${'/teacher/delete/' + teacher.dni}">eliminar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')"
+							th:href="${'/teacher/edit/' + teacher.dni}">modificar</a></td>
+						<td><a
+							sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_PROFESSOR')"
+							th:href="${'/teacher/details/' + teacher.dni}">detalles</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-
-
-
 </body>
 </html>

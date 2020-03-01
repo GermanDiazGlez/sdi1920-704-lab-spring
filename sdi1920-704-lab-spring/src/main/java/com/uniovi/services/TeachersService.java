@@ -34,7 +34,7 @@ public class TeachersService {
 	}
 
 	public Teacher getTeacherByDni(String dni) {
-		return teachersRepository.findByDni(String.valueOf(dni));
+		return teachersRepository.findByDni(dni);
 	}
 
 }
