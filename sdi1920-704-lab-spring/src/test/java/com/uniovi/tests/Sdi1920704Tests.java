@@ -66,11 +66,6 @@ public class Sdi1920704Tests {
 	driver.quit();
 	}
 
-	@Test
-	public void test() {
-	fail("Not yet implemented");
-	}
-
 	//PR01. Acceder a la página principal /
 	@Test
 	public void PR01() {
@@ -274,14 +269,13 @@ public class Sdi1920704Tests {
 		//COmprobamos que entramos en la pagina privada del Profesor
 		PO_View.checkElement(driver, "text", "99999993D");
 		//Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free",
-		"//li[contains(@id, 'marks-menu')]/a");
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks-menu')]/a");
 		elementos.get(0).click();
 		//Pinchamos en la opción de lista de notas.
 		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'mark/list')]");
 		elementos.get(0).click();
 		//Esperamos a que se muestren los enlaces de paginacion la lista de notas
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'pagelink')]");
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
 		//Nos vamos a la última página
 		elementos.get(3).click();
 		//Esperamos a que aparezca la Nueva nota en la ultima pagina
@@ -290,7 +284,7 @@ public class Sdi1920704Tests {
 		elementos = PO_View.checkElement(driver, "free", "//td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(@href, 'mark/delete')]");
 		elementos.get(0).click();
 		//Volvemos a la última pagina
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'pagelink')]");
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
 		elementos.get(3).click();
 		//Y esperamos a que NO aparezca la ultima "Nueva Nota 1"
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "Nota Nueva 1",PO_View.getTimeout() );
