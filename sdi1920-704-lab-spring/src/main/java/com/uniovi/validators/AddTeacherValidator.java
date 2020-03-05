@@ -23,27 +23,23 @@ public class AddTeacherValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Teacher teacher = (Teacher) target;
-
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "Error.empty");
-
-		String dni = String.valueOf(teacher.getDni());
-
-		if (dni.length() != 9) {
-			errors.rejectValue("dni", "Error.teacher.dni.length");
+		if (teacher.getDni().length() < 9 || teacher.getDni().length() > 9) {
+			errors.rejectValue("dni", "Error.signup.dni.length");
+		}
+		else if (!Character.isLetter(teacher.getDni().charAt(8))) {
+			errors.rejectValue("dni", "Error.teacher.signup.dni.notLetter");
+		}
+		if (teachersService.getTeacherByDni(teacher.getDni()) != null) {
+			errors.rejectValue("dni", "Error.signup.dni.duplicate");
+		}
+		if (teacher.getNombre().length() < 5 || teacher.getNombre().length() > 24) {
+			errors.rejectValue("nombre", "Error.signup.name.length");
+		}
+		if (teacher.getApellidos().length() < 5 || teacher.getApellidos().length() > 24) {
+			errors.rejectValue("apellidos", "Error.signup.lastName.length");
 		}
 
-		if (!isLetter(dni.charAt(dni.length() - 1))) {
-			errors.rejectValue("dni", "Error.teacher.dni.character");
-		}
-
-		if (teachersService.getTeacher(teacher.getDni()) != null) {
-			errors.rejectValue("dni", "Error.teacher.dni.duplicate");
-		}
-
-	}
-
-	private boolean isLetter(char caracter) {
-		return Character.isLetter(caracter);
 	}
 
 }
