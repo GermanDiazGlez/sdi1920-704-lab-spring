@@ -24,4 +24,22 @@ public class PO_PrivateView extends PO_NavView {
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
 	}
+	
+	static public void login(WebDriver driver, String classname, String dni, String password, String elementType,
+			String elementValue) {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", classname);
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, dni, password);
+		// COmprobamos que entramos en la pagina privada del Profesor
+		PO_View.checkElement(driver, elementType, elementValue);
+	}
+
+	static public void logout(WebDriver driver, String elementType, String elementValue) {
+		// Ahora nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", elementType, elementValue);
+
+	}
+	
+	
 }
